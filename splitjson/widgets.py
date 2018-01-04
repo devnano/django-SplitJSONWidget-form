@@ -23,9 +23,9 @@ class SplitJSONWidget(forms.Widget):
         Widget.__init__(self, attrs)
 
     def _as_text_field(self, name, key, value, is_sub=False):
-        attrs = self.build_attrs(self.attrs, type='text',
-                                 name="%s%s%s" % (name, self.separator, key))
-        attrs['value'] = utils.encoding.force_unicode(value)
+        attrs = self.build_attrs(self.attrs, {"type":'text',
+                        "name":"%s%s%s" % (name, self.separator, key)})
+        attrs['value'] = utils.encoding.force_text(value)
         attrs['id'] = attrs.get('name', None)
         return u""" <label for="%s">%s:</label>
         <input%s />""" % (attrs['id'], key, flatatt(attrs))
@@ -47,7 +47,7 @@ class SplitJSONWidget(forms.Widget):
                                                      self.separator, key),
                                          value))
             inputs.extend([_l])
-        elif isinstance(json_obj, (basestring, int, float)):
+        elif isinstance(json_obj, (str, int, float)):
             name, _, key = name.rpartition(self.separator)
             inputs.append(self._as_text_field(name, key, json_obj))
         elif json_obj is None:

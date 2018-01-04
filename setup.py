@@ -143,9 +143,10 @@ setup(
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.5',
         'Topic :: Internet :: WWW/HTTP',
     ],
     zip_safe=True,
     install_requires=(
-        'Django>=1.3'),
+        'Django>=2.0'),
 )
