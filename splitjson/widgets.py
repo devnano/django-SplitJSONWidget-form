@@ -4,6 +4,8 @@ from django.forms import Widget
 from django import utils
 import copy
 from distutils.version import StrictVersion
+from six import iteritems
+
 try:
     import simplejson as json
 except ImportError:
@@ -128,7 +130,7 @@ class SplitJSONWidget(forms.Widget):
             else:
                 return v
 
-        for k, v in raw_data.iteritems():
+        for k, v in iteritems(raw_data):
             if k in copy_raw_data:
                 # to transform value from list to string
                 v = v[0] if isinstance(v, list) and len(v) is 1 else v
